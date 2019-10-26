@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.messcat.tvbox.module.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.4"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.6"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/tv_box_weather"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_20" />
+
+                <TextView
+                    android:id="@+id/tv_box_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/tv_box_weather"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:layout_toRightOf="@id/tv_box_weather"
+                    android:text=""
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/sp_16" />
+
+                <TextView
+                    android:id="@+id/tv_box_address_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/tv_box_address"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_toRightOf="@id/tv_box_address"
+                    android:text=""
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/sp_16" />
+
+                <TextView
+                    android:id="@+id/tv_box_address_dy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/tv_box_weather"
+                    android:layout_marginBottom="@dimen/dp_5"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_toRightOf="@id/tv_box_weather"
+                    android:text=""
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/sp_16" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.messcat.mclibrary.widget.MarqueeTextView
+                android:id="@+id/tv_box_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="marquee"
+                android:gravity="center"
+                android:lines="1"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/tv_box_ename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp" />
+
+            <com.messcat.tvbox.widget.RatingBar
+                android:id="@+id/tv_box_ratingbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="3dp"
+                android:visibility="gone"
+                app:starCount="5"
+                app:starEmpty="@mipmap/star_gray"
+                app:starFill="@mipmap/index_star"
+                app:starHalf="@mipmap/index_star"
+                app:starImageSize="15dp"
+                app:starPadding="15dp"
+                app:stepSize="Half" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.4"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_box_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_box_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="28sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_wifi"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_tv_box"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:background="@mipmap/index_welcome_bg"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.messcat.mclibrary.widget.MarqueeTextView
+            android:id="@+id/marquestextview"
+            android:layout_width="440dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:lines="1"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/tv_box_centre"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_weight="2.8">
+
+            <!--     <com.youth.banner.Banner
+                     android:id="@+id/banner"
+                     android:layout_width="match_parent"
+                     android:layout_height="370dp"
+                     android:layout_marginBottom="@dimen/dp_3"
+                     android:layout_marginLeft="12dp"
+                     android:layout_marginRight="12dp"
+                     android:layout_marginTop="@dimen/dp_10"
+                     android:clickable="false"
+                     android:focusable="false"
+                     android:focusableInTouchMode="false"
+                     app:banner_default_image="@mipmap/ic_launcher" />-->
+
+            <com.messcat.tvbox.module.home.BannerCycleViewPager
+                android:id="@+id/banner_vp"
+                android:layout_width="match_parent"
+                android:layout_height="430dp"
+                android:layout_marginBottom="@dimen/dp_3"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp" />
+
+            <!--<ImageButton-->
+            <!--android:id="@+id/tv_box_centre_img"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_marginBottom="@dimen/dp_3"-->
+            <!--android:layout_marginLeft="@dimen/dp_3"-->
+            <!--android:layout_marginRight="@dimen/dp_3" />-->
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/tv_box_travel"
+                android:layout_width="255dp"
+                android:layout_height="195dp"
+                android:gravity="center"
+                android:padding="2dp">
+
+                <ImageButton
+                    android:id="@+id/tv_box_img_travel"
+                    android:layout_width="255dp"
+                    android:layout_height="195dp"
+                    android:layout_marginBottom="@dimen/dp_3"
+                    android:layout_marginLeft="@dimen/dp_3"
+                    android:layout_marginRight="@dimen/dp_3"
+                    android:background="@color/colorIndex"
+                    android:paddingTop="@dimen/dp_4"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/index_tv_channel" />
+
+                <TextView
+                    android:id="@+id/tv_box_text_travel"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="@dimen/dp_2"
+                    android:layout_marginRight="@dimen/dp_2"
+                    android:alpha="5"
+                    android:background="@drawable/text_radius_new"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/tv_box_cate"
+                android:layout_width="255dp"
+                android:layout_height="195dp"
+                android:layout_marginTop="@dimen/dp_10"
+                android:gravity="center"
+                android:padding="2dp">
+
+                <ImageButton
+                    android:id="@+id/tv_box_img_cate"
+                    android:layout_width="255dp"
+                    android:layout_height="195dp"
+                    android:layout_margin="@dimen/dp_3"
+                    android:background="@color/colorIndex"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/index_tv_channel" />
+
+                <TextView
+                    android:id="@+id/tv_box_text_cate"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="@dimen/dp_2"
+                    android:layout_marginRight="@dimen/dp_2"
+                    android:alpha="5"
+                    android:background="@drawable/text_radius_new"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/tv_box_social"
+                android:layout_width="255dp"
+                android:layout_height="195dp"
+                android:gravity="center"
+                android:padding="2dp">
+
+                <ImageButton
+                    android:id="@+id/tv_box_img_social"
+                    android:layout_width="255dp"
+                    android:layout_height="195dp"
+                    android:layout_marginBottom="@dimen/dp_3"
+                    android:layout_marginLeft="@dimen/dp_3"
+                    android:layout_marginRight="@dimen/dp_3"
+                    android:background="@color/colorIndex"
+                    android:paddingTop="@dimen/dp_4"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/index_tv_channel" />
+
+                <TextView
+                    android:id="@+id/tv_box_text_social"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="@dimen/dp_2"
+                    android:layout_marginRight="@dimen/dp_2"
+                    android:alpha="5"
+                    android:background="@drawable/text_radius_new"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/tv_box_shopping"
+                android:layout_width="255dp"
+                android:layout_height="195dp"
+                android:layout_marginTop="@dimen/dp_10"
+                android:gravity="center"
+                android:padding="2dp">
+
+                <ImageButton
+                    android:id="@+id/tv_box_img_shopping"
+                    android:layout_width="255dp"
+                    android:layout_height="195dp"
+                    android:layout_margin="@dimen/dp_3"
+                    android:background="@color/colorIndex"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/index_tv_channel" />
+
+                <TextView
+                    android:id="@+id/tv_box_text_shopping"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="@dimen/dp_2"
+                    android:layout_marginRight="@dimen/dp_2"
+                    android:alpha="5"
+                    android:background="@drawable/text_radius_new"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/hot_spot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_wifi_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="@dimen/dp_40"
+                    android:layout_marginTop="36dp"
+                    android:gravity="center"
+                    android:text="WiFi名称："
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_box_wifi_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="@dimen/dp_40"
+                    android:gravity="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_wifi_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="@dimen/dp_40"
+                    android:gravity="center"
+                    android:text="WiFi密码："
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_box_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="@dimen/dp_40"
+                    android:gravity="center"
+                    android:textColor="@color/color_white"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/not_hot_spot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="无WIFI热点"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_20"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="2.5"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/tv_box_channel"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_20"
+                android:orientation="vertical"
+                android:padding="@dimen/dp_5">
+
+                <ImageButton
+                    android:id="@+id/tv_box_channel_img"
+                    android:layout_width="71.5dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/dp_6"
+                    android:background="@color/colorIndex"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/index_tv_channel" />
+
+                <TextView
+                    android:id="@+id/tv_box_channel_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:lines="1"
+                    android:text="电影轮播"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/sp_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tv_box_movie_world"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_20"
+                android:orientation="vertical"
+                android:padding="@dimen/dp_5">
+
+                <ImageButton
+                    android:id="@+id/tv_box_movie_world_img"
+                    android:layout_width="71.5dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/dp_6"
+                    android:background="@color/colorIndex"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/index_movie" />
+
+                <TextView
+                    android:id="@+id/tv_box_movie_world_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:lines="1"
+                    android:text="电影世界"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/sp_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tv_box_hotel_service"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_20"
+                android:orientation="vertical"
+                android:padding="@dimen/dp_5">
+
+                <ImageButton
+                    android:id="@+id/tv_box_hotel_service_img"
+                    android:layout_width="71.5dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/dp_6"
+                    android:background="@color/colorIndex"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/index_hotel_service"></ImageButton>
+
+                <TextView
+                    android:id="@+id/tv_box_hotel_service_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:lines="1"
+                    android:text="酒店服务"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/sp_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tv_box_live"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_20"
+                android:orientation="vertical"
+                android:padding="@dimen/dp_5">
+
+                <ImageButton
+                    android:id="@+id/tv_box_live_img"
+                    android:layout_width="71.5dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/dp_6"
+                    android:background="@color/colorIndex"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/index_live" />
+
+                <TextView
+                    android:id="@+id/tv_box_live_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:lines="1"
+                    android:text="直播频道"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/sp_16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tv_box_local_app"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_20"
+                android:orientation="vertical"
+                android:padding="@dimen/dp_5">
+
+                <ImageButton
+                    android:id="@+id/tv_box_local_app_img"
+                    android:layout_width="71.5dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/dp_6"
+                    android:background="@color/colorIndex"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/index_local_app" />
+
+                <TextView
+                    android:id="@+id/tv_box_local_app_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:lines="1"
+                    android:text="本地应用"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/sp_16" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/tv_box_skittles"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_20"
+                android:orientation="vertical"
+                android:padding="@dimen/dp_5">
+
+                <ImageButton
+                    android:id="@+id/tv_box_skittles_img"
+                    android:layout_width="71.5dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/dp_6"
+                    android:background="@color/colorIndex"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/index_beer_skittles" />
+
+                <TextView
+                    android:id="@+id/tv_box_skittles_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:text="吃喝玩乐"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/sp_16" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tv_box_help_layout"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/tv_box_help"
+                android:layout_width="wrap_content"
+                android:layout_height="33dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/dp_30"
+                android:layout_marginRight="@dimen/dp_50"
+                android:layout_marginTop="@dimen/dp_20"
+                android:background="@drawable/text_small_radius"
+                android:gravity="center"
+                android:text="帮助/help"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

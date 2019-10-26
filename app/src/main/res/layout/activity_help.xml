@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/dp_30"
+        android:layout_marginTop="100dp"
+        android:layout_weight="11"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="650dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_20"
+            android:alpha="20"
+            android:background="@drawable/classify_shape"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_30">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:focusable="false"
+                android:gravity="center"
+                android:text="多媒体遥控器操作"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_22"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:focusable="false"
+                android:gravity="center"
+                android:text="整套智能设备包含主机、电源、高清线、遥控器接收器及遥控器五部分组成"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_20"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_message0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:focusable="false"
+                android:text="遥控器使用说明"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_20" />
+
+            <TextView
+                android:id="@+id/tv_message1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:focusable="false"
+                android:text="1、使用遥控器前请先检查是否损坏，按下任意按钮【 指 示 灯 】是否亮起，如不能正常亮起或外观损坏请联系服务员及时更换。"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_18" />
+
+            <TextView
+                android:id="@+id/tv_message2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:focusable="false"
+                android:text="2、红色【 电 源 】键为红外开关机按钮,操作时需对准电视机"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_18" />
+
+            <TextView
+                android:id="@+id/tv_message3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:focusable="false"
+                android:text="3、使用遥控器[上 下 左 右 ]键选择对应项目"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_18" />
+
+            <TextView
+                android:id="@+id/tv_message4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:focusable="false"
+                android:text="4、使用遥控器【  O K 】键进入栏目，观看电视、电影过程中按下【 O K 】键弹出节目菜单"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_18" />
+
+            <TextView
+                android:id="@+id/tv_message5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:focusable="false"
+                android:text="5、使用【返 回 键 】退出当前栏目，部分栏目需要按下两次【返 回 键 】退出"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_18" />
+
+            <TextView
+                android:id="@+id/tv_message6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:focusable="false"
+                android:text="6、使用【 主 页 】键返回到系统主页面"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_18" />
+
+            <TextView
+                android:id="@+id/tv_message7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:focusable="false"
+                android:text="7、使用【 音 量 + / 音 量 - 】键调节音量"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_18" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="@color/colorCsmk">
+
+        <Button
+            android:id="@+id/tv_box_back"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:background="@mipmap/welcome_help_bg_hover"
+            android:focusableInTouchMode="true"
+            android:text="返回"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/layout_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_box_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorGray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_box_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorGray"
+                android:textSize="26sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@id/layout_date"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/tv_box_image_sun"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_box_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_box_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_box_t"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_box_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_box_address"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@id/layout_weather"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_wifi_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WiFi名称："
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_wifi_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WiFi密码："
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_box_wifi_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_box_wifi_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/tv_box_help_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:focusable="false"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/tv_box_help"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@mipmap/welcome_help_bg_hover"
+            android:gravity="center"
+            android:text="返回"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,122 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+//repositories {
+//    flatDir {
+//        dirs 'libs'
+//    }
+//}
+//
+def getMyStoreFile() {
+//    if ("true".equals(IS_JENKINS)) {
+//        return file("/tv_box.jks")
+//    } else {
+    return file("tv_box.jks")
+//    }
+}
+
+android {
+    signingConfigs {
+        release {
+            keyAlias 'tv_box'
+            keyPassword 'tvbox123456'
+            storeFile getMyStoreFile()
+            storePassword 'tvbox123456'
+        }
+    }
+    compileSdkVersion 26
+    buildToolsVersion '26.0.3'
+//    dexOptions {
+//        jumboMode true
+//    }
+    defaultConfig {
+        applicationId "com.messcat.tvbox"
+        minSdkVersion 16
+        targetSdkVersion 26
+//        multiDexEnabled true
+//        versionName project.APP_VERSION
+//        versionCode Integer.parseInt(project.VERSION_CODE)
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        resConfigs "zh", "en"//支持中英文
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            // 移除无用的resource文件
+            shrinkResources false
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+//    applicationVariants.all { variant ->
+//        variant.outputs.each {
+//            def newName
+//            def outDirectory
+//            if ("true".equals(IS_JENKINS)) {
+//                outDirectory = BUILD_PATH
+//                newName = 'tv_box' + '-' + defaultConfig.versionName + '.apk'
+//            } else {
+////                outDirectory = output.outputFile.getParent()
+//                newName = "tv_box" + "-" + defaultConfig.versionName + ".apk"
+//            }
+//            it.outputFileName = newName
+//        }
+//    }
+//    sourceSets {
+//        main {
+//            jniLibs.srcDirs = ['libs']
+//        }
+//    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+//修改生成的apk名字
+
+
+dependencies {
+    provided files('libs/net.jar')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    androidTestCompile 'junit:junit:4.12'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile project(':mclibrary')
+    compile 'com.youth.banner:banner:1.4.10'
+}
+
+preBuild {
+    doLast {
+        def imlFile = file(project.name + ".iml")
+        println 'Change ' + project.name + '.iml order'
+        try {
+            def parsedXml = (new XmlParser()).parse(imlFile)
+            def jdkNode = parsedXml.component[1].orderEntry.find { it.'@type' == 'jdk' }
+            parsedXml.component[1].remove(jdkNode)
+            def sdkString = "Android API " + android.compileSdkVersion.substring("android-".length()) + " Platform"
+            new Node(parsedXml.component[1], 'orderEntry', ['type': 'jdk', 'jdkName': sdkString, 'jdkType': 'Android SDK'])
+            groovy.xml.XmlUtil.serialize(parsedXml, new FileOutputStream(imlFile))
+        } catch (FileNotFoundException e) {
+            // nop, iml not found
+        }
+    }
+}
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorCsmk">#6c000000</color>
+    <color name="colorWifiBg">#fcce45</color>
+    <color name="colorGray">#efeded</color>
+    <color name="colorTheme">#36311F</color>
+    <color name="colorIndex">#00000000</color>
+    <color name="colorb4000000">#9d000000</color>
+    <color name="colorc4a992">#c4a992</color>
+    <color name="banner_background">#44222222</color>
+    <color name="colorProgress">#FB3B38</color>
+</resources>

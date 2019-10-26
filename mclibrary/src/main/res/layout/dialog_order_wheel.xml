@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_white"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/yf_wheel_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_5"
+                android:padding="@dimen/dp_5"
+                android:text="取消"
+                android:textSize="@dimen/sp_14" />
+
+            <TextView
+                android:id="@+id/yf_wheel_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_5"
+                android:padding="@dimen/dp_5"
+                android:text="确定"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/sp_14" />
+        </RelativeLayout>
+
+        <include layout="@layout/inclde_divide" />
+
+        <com.messcat.mclibrary.widget.MCWheelView
+            android:id="@+id/wheelview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:highColor="@color/color_gray" />
+    </LinearLayout>
+
+</LinearLayout>

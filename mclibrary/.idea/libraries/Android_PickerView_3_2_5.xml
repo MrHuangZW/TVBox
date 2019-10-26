@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Android-PickerView-3.2.5">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/3f832c15531fd223939dde1ab6802aaf4c8bea0b/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/3f832c15531fd223939dde1ab6802aaf4c8bea0b/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.contrarywind/Android-PickerView/3.2.5/80f5549a5e2434f207ab26ae87f5d9952d801ffc/Android-PickerView-3.2.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
