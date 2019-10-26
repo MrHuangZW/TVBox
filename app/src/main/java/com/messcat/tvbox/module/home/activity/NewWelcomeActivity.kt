@@ -567,12 +567,12 @@ class NewWelcomeActivity : MVPActivity<WelcomePresenter>(), WelcomeContract.View
 //                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
                 } else {
-//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-////                        closeWifiHotspot(wifiManager,wifiBean?.result?.wifiName, wifiBean?.result?.wifiPassword)
-//                        ThirdActivity.openWifi(this, wifiBean?.result?.wifiName, wifiBean?.result?.wifiPassword)
-//                    } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+//                        closeWifiHotspot(wifiManager,wifiBean?.result?.wifiName, wifiBean?.result?.wifiPassword)
+                        ThirdActivity.openWifi(this, wifiBean?.result?.wifiName, wifiBean?.result?.wifiPassword)
+                    } else {
                         setWifiAppEnabload(wifiManager, wifiBean?.result?.wifiName, wifiBean?.result?.wifiPassword, mActivity)
-//                    }
+                    }
                 }
             } else {
                 setWifiAppEnabload(wifiManager, wifiBean?.result?.wifiName, wifiBean?.result?.wifiPassword, mActivity)

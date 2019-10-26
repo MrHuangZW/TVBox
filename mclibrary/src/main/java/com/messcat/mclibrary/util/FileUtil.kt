@@ -25,26 +25,6 @@ fun Any.getSDPath(): String? {
 }
 
 /**
- * 获取SD卡数据
- */
-fun Any.getFilePath(fileName: String?, filePaths: String?): String? {
-    val filePath = getSDPath() + File.separator + fileName
-    val file = File(filePath)
-    if (file.exists()) {
-        val file1 = File(filePath + File.separator + filePaths)
-        if (file1.exists()) {
-            return file1.path
-        } else {
-            return null
-        }
-    } else {
-        return null
-    }
-
-
-}
-
-/**
  * 创建SD卡下的文件
  *
  * @param path
@@ -65,6 +45,26 @@ fun createFile(fileName: String, path: String): File {
 
     }
     return file1
+}
+
+/**
+ * 获取SD卡数据
+ */
+fun Any.getFilePath(fileName: String?, filePaths: String?): String? {
+    val filePath = getSDPath() + File.separator + fileName
+    val file = File(filePath)
+    if (file.exists()) {
+        val file1 = File(filePath + File.separator + filePaths)
+        if (file1.exists()) {
+            return file1.path
+        } else {
+            return null
+        }
+    } else {
+        return null
+    }
+
+
 }
 
 /**
