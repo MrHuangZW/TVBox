@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Environment;
 import android.support.v4.app.NotificationCompat;
+import android.widget.Toast;
 
 import com.messcat.kotlin.utils.LogUtil;
 import com.messcat.mclibrary.mchttp.uploadAPP.DownLoadService;
@@ -24,29 +25,44 @@ import retrofit2.Retrofit;
 
 public class DownLoadUtils {
 
+    private static DownLoadUtils mInstance;
+
     /**
      * 目标文件存储的文件夹路径
      */
-    private static  String destFileDir = "TVBox";
+    private static String destFileDir = "TVBox";
     /**
      * 目标文件存储的文件名
      */
     private static String destFileName = "tvbox.mp4";
-    private static String url1, url2;
-    private Context mContext;
-    private int preProgress = 0;
-    private int NOTIFY_ID = 1000;
-    private NotificationCompat.Builder builder;
-    private NotificationManager notificationManager;
+    private static String url,url1, url2;
     private static Retrofit.Builder retrofit;
+    private Context mContext;
 
+    private DownLoadUtils(Context context) {
+        mContext = context;
+    }
 
-    public static void loadVideo(String url,ILoadVideoListener listener) {
+    public static DownLoadUtils getInstance(Context context) {
+        if (mInstance == null) {
+            synchronized (DownLoadUtils.class) {
+                if (mInstance == null) {
+                    mInstance = new DownLoadUtils(context);
+                }
+            }
+        }
+        return mInstance;
+    }
+
+    public void loadVideo(String url, final ILoadVideoListener listener) {
         if (url != null) {
+            this.url = url;
             url1 = url.substring(0, url.lastIndexOf("/") + 1);
             url2 = url.substring(url.lastIndexOf("/") + 1);
-            if (url1 != null && url2 != null) {
+            if (url1 != null && url2 != null&&!url1.equals("null")&&!url2.equals("null")) {
                 loadFile(listener);
+            }else{
+                listener.loadFail();
             }
         }
 
@@ -55,7 +71,7 @@ public class DownLoadUtils {
     /**
      * 下载文件
      */
-    private static void loadFile(final ILoadVideoListener listener) {
+    private void loadFile(final ILoadVideoListener listener) {
 //        initNotification();
         if (retrofit == null) {
             retrofit = new Retrofit.Builder();
@@ -73,21 +89,21 @@ public class DownLoadUtils {
                         // 安装软件
 //                        cancelNotification();
 //                        installApk(file);
-                        listener.loadSuccess();
+                        listener.loadSuccess(url);
                     }
 
                     @Override
                     public void onLoading(long progress, long total) {
                         LogUtil.e("下载进度" + progress * 100 / total);
 //                        updateNotification(progress * 100 / total);
+                        Toast.makeText(mContext,"下载进度:"+ progress * 100 / total,Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
 //                        cancelNotification();
-                        File file = new File(getFilePath("TVBox", "tvbox.mp4"));
-                        if (file.exists())
-                            file.delete();
+                        Toast.makeText(mContext,"下载失败:"+ t.getMessage(),Toast.LENGTH_SHORT).show();
+
                         listener.loadFail();
                     }
                 });
@@ -98,7 +114,7 @@ public class DownLoadUtils {
      *
      * @return
      */
-    private static OkHttpClient initOkHttpClient() {
+    private OkHttpClient initOkHttpClient() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.connectTimeout(100000, TimeUnit.SECONDS);
         builder.networkInterceptors().add(new Interceptor() {
@@ -115,39 +131,9 @@ public class DownLoadUtils {
     }
 
     public interface ILoadVideoListener {
-        void loadSuccess();
+        void loadSuccess(String url);
+
         void loadFail();
-    }
-    /**
-     * 获取SD卡目录
-     */
-   private static String getSDPath(){
-        String sdDis = null;
-        boolean sdCardExit = Environment.MEDIA_MOUNTED == Environment.getExternalStorageState();
-        if (sdCardExit) {
-            sdDis = Environment.getExternalStorageDirectory().getPath();
-        }
-        return sdDis;
-    }
-
-    /**
-     * 获取SD卡数据
-     */
-   private static String  getFilePath(String fileName, String filePaths){
-        String filePath = getSDPath() + File.separator + fileName;
-        File file = new File(filePath);
-        if (file.exists()) {
-            File file1 = new File(filePath + File.separator + filePaths);
-            if (file1.exists()) {
-                return file1.getPath();
-            } else {
-                return null;
-            }
-        } else {
-            return null;
-        }
-
-
     }
 
 }

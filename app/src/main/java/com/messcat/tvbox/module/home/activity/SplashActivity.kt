@@ -18,23 +18,42 @@ import com.messcat.tvbox.module.home.presenter.PlayMoviePresenter
 import android.support.v4.app.ActivityCompat
 import android.content.pm.PackageManager
 import android.os.Handler
+import com.messcat.tvbox.module.home.utils.DownLoadUtils
 
 
 /**
  * Created by Administrator on 2017/9/18 0018.
  */
 
-class SplashActivity : MVPActivity<PlayMoviePresenter>(), PlayMovieContract.View {
+class SplashActivity : MVPActivity<PlayMoviePresenter>(), PlayMovieContract.View, DownLoadUtils.ILoadVideoListener {
+    override fun loadFail() {
+        if (getFilePath("TVBox", "tvbox.mp4") != null) {
+            var bundler = Bundle()
+            bundler.putString("url", getFilePath("TVBox", "tvbox.mp4"))
+            goToActivity(mActivity, PlayMovieActivity::class.java, bundler)
+            finishActivitys(mActivity)
+        } else {
+            goToActivity(mActivity, NewWelcomeActivity::class.java)
+            finishActivitys(mActivity)
+        }
+    }
+
+    override fun loadSuccess( url:String) {
+        putString("url",url)
+        var bundler = Bundle()
+        bundler.putString("url", getFilePath("TVBox", "tvbox.mp4"))
+        goToActivity(mActivity, PlayMovieActivity::class.java, bundler)
+        finishActivitys(mActivity)
+    }
 
     private val REQUEST_EXTERNAL_STORAGE = 1
     private val PERMISSIONS_STORAGE = arrayOf("android.permission.READ_EXTERNAL_STORAGE"
             , "android.permission.WRITE_EXTERNAL_STORAGE"
-            ,"android.permission.ACCESS_WIFI_STATE"
-            ,"android.permission.CHANGE_WIFI_STATE"
-            ,"android.permission.ACCESS_FINE_LOCATION","android.permission.MANAGE_USERS","android.permission.CREATE_USERS"
-            ,"android.permission.ACCESS_COARSE_LOCATION")
+            , "android.permission.ACCESS_WIFI_STATE"
+            , "android.permission.CHANGE_WIFI_STATE"
+            , "android.permission.ACCESS_FINE_LOCATION", "android.permission.MANAGE_USERS", "android.permission.CREATE_USERS"
+            , "android.permission.ACCESS_COARSE_LOCATION")
 
-    var handlerThread:Handler?=null
 
     override fun showError(msg: String?) {
         goToActivity(mActivity, NewWelcomeActivity::class.java)
@@ -52,34 +71,19 @@ class SplashActivity : MVPActivity<PlayMoviePresenter>(), PlayMovieContract.View
     override fun getVideo(playMovie: PlayMovieBean?) {
         if (playMovie?.result != null) {
             if (getStrings("url", null) != null) {
-                if (!getStrings("url", null).equals(BASE_URL + playMovie?.result?.vedio)||getFilePath("TVBox", "tvbox.mp4") == null) {
-                    putString("url", BASE_URL + playMovie?.result?.vedio)
-                    var intent = Intent(mActivity, DownLoadService::class.java)
-                    intent.putExtra("url", BASE_URL + playMovie?.result?.vedio)
-                    startService(intent)
-                }
-            } else {
-                putString("url", BASE_URL + playMovie?.result?.vedio)
-                var intent = Intent(mActivity, DownLoadService::class.java)
-                intent.putExtra("url", BASE_URL + playMovie?.result?.vedio)
-                startService(intent)
-            }
-            if (getFilePath("TVBox", "tvbox.mp4") != null) {
-                var bundler = Bundle()
-                bundler.putString("url", getFilePath("TVBox", "tvbox.mp4"))
-                goToActivity(mActivity, PlayMovieActivity::class.java, bundler)
-                finishActivitys(mActivity)
-            } else {
-                if (playMovie?.result?.vedio != null && !"".equals(playMovie?.result?.vedio)) {
+                if (!getStrings("url", "").equals(BASE_URL + playMovie?.result?.vedio)) {
+
+                    DownLoadUtils.getInstance(this).loadVideo(BASE_URL + playMovie?.result?.vedio, this)
+                } else if (getFilePath("TVBox", "tvbox.mp4") != null) {
                     var bundler = Bundle()
-                    bundler.putString("url", BASE_URL + playMovie?.result?.vedio)
+                    bundler.putString("url", getFilePath("TVBox", "tvbox.mp4"))
                     goToActivity(mActivity, PlayMovieActivity::class.java, bundler)
                     finishActivitys(mActivity)
-                } else {
-                    goToActivity(mActivity, NewWelcomeActivity::class.java)
-                    finishActivitys(mActivity)
                 }
+            } else {
+                DownLoadUtils.getInstance(this).loadVideo(BASE_URL + playMovie?.result?.vedio, this)
             }
+
         } else {
             goToActivity(mActivity, NewWelcomeActivity::class.java)
             finishActivitys(mActivity)
@@ -127,17 +131,23 @@ class SplashActivity : MVPActivity<PlayMoviePresenter>(), PlayMovieContract.View
                 finishActivitys(mActivity)
             }
         } else {
-            if (getFilePath("TVBox", "tvbox.mp4") != null) {
-                var bundler = Bundle()
-                bundler.putString("url", getFilePath("TVBox", "tvbox.mp4"))
-                goToActivity(mActivity, PlayMovieActivity::class.java, bundler)
-                finishActivitys(mActivity)
-            } else if (getFilePath("TVBox", "tvbox.mp4") == null && checkNetEnable(mContext)) {
-                remove("url")
+            if (getMember() != null) {
+                if (getFilePath("TVBox", "tvbox.mp4") != null) {
+                    var bundler = Bundle()
+                    bundler.putString("url", getFilePath("TVBox", "tvbox.mp4"))
+                    goToActivity(mActivity, PlayMovieActivity::class.java, bundler)
+                    finishActivitys(mActivity)
+                } else if (getFilePath("TVBox", "tvbox.mp4") == null && checkNetEnable(mContext)) {
+                    remove("url")
+                } else {
+                    goToActivity(mActivity, NewWelcomeActivity::class.java)
+                    finishActivitys(mActivity)
+                }
             } else {
-                goToActivity(mActivity, NewWelcomeActivity::class.java)
+                goToActivity(mActivity, MessageActivity::class.java)
                 finishActivitys(mActivity)
             }
+
         }
     }
 
